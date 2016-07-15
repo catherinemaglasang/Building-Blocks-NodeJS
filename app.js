@@ -4,6 +4,12 @@
 var express = require("express");
 var app = express();
 
+var blocks = {
+    'Fixed' : 'Fastened Securely in position',
+    'Movable' : 'Capable of being moved',
+    'Rotating' : 'Moving in a circle around its center'
+};
+
 //middlewares
 app.use(express.static('public'));
 
@@ -18,6 +24,11 @@ app.get('/blocks', function (request, response){
     }else {
         response.json(blocks); //same as .send()
     }
+});
+
+app.get('/blocks/:name', function (request, response) {
+    var description = blocks[request.params.name];
+    response.json(description);
 });
 
 app.listen(8080, function () {
