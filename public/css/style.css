@@ -1,0 +1,12 @@
+body, html {
+    position: relative;
+    background-color: blanchedalmond;
+    min-height: 100%;
+    overflow-x: hidden;
+    margin-left: 5%;
+    margin-right:5%;
+}
+.block-list{
+    background-color: white;
+    overflow-y: scroll;
+}

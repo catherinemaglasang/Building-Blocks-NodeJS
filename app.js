@@ -4,11 +4,22 @@
 var express = require("express");
 var app = express();
 
+var bodyParser = require("body-parser");
+
+var parseUrlencoded = bodyParser.urlencoded({ extended: false});
+
 var blocks = {
     'Fixed' : 'Fastened Securely in position',
     'Movable' : 'Capable of being moved',
     'Rotating' : 'Moving in a circle around its center'
 };
+
+app.post('/blocks', parseUrlencoded, function (request, response) {
+    var newBlock = request.body; //access for submitted data
+    blocks[newBlock.name] = newBlock.description;
+
+    response.status(201).json(newBlock.name);
+});
 
 //middlewares
 app.use(express.static('public'));
