@@ -4,9 +4,12 @@
 var express = require("express");
 var app = express();
 
-app.get('/', function (request, response) {
-   response.send('Hello There!');
-});
+//middlewares
+app.use(express.static('public'));
+
+// app.get('/', function (request, response) {
+//    response.send(__dirname + '/index.html');
+// });
 
 app.get('/blocks', function (request, response){
    var blocks = ['Fixed', 'Movable', 'Rotating'];
