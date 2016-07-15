@@ -3,7 +3,11 @@
  */
 $(function () {
 
+    $.get('/blocks', appendToList);
+
+    //listen to submit event
     $('form').on('submit', function (event) {
+        //prevent from immediately submitting the form
         event.preventDefault();
         var form = $(this);
         var blockData = form.serialize();
@@ -19,14 +23,12 @@ $(function () {
         });
     });
 
-    $.get('/blocks', appendToList);
-
     function appendToList(blocks) {
         var list = [];
         for (var i in blocks){
             block = blocks[i];
             content = '<a href="/blocks/'+block+'">'+block+'</a>';
-            list.push($('<li>', { text : blocks[i] }));
+            list.push($('<li>', { html : content }));
         }
         $('.block-list').append(list);
     }
